@@ -20,13 +20,14 @@ import java.io.ByteArrayOutputStream;
 public class FileDownload {
     @GetMapping(path="/download-file")
     public ResponseEntity<Resource> getFile(){
-        String fileName = "Can not find symbol.docx";
+        //enter file name
+        String fileName = "filename.txt";
         //azure credentials
-        String connection_string = "DefaultEndpointsProtocol=https;AccountName=filedownloadtest;AccountKey=LztPgH7RsP7WgyoQh+Py3amoNlJ9X+4b8Zau1oqMZ6fypuzq5fgRydtlnTCQDNAh3PEo+vEHHLdB5KZLOM2cPA==;EndpointSuffix=core.windows.net";
+        String connection_string = "connection string of your storage account ";
 
         BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(connection_string).buildClient();
 
-        BlobContainerClient containerClient= blobServiceClient.getBlobContainerClient("container1");
+        BlobContainerClient containerClient= blobServiceClient.getBlobContainerClient("container name");
         System.out.println(containerClient.getBlobContainerName());
 
         BlobClient blob = containerClient.getBlobClient(fileName);
